@@ -1,0 +1,6 @@
+[flake8]
+extend-ignore =  F403, F405
+exclude = .git, .venv, migrations, env
+max-line-length = 91
+max-complexity = 10
+show-source = true
