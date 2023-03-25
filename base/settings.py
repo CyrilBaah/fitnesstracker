@@ -26,13 +26,13 @@ load_dotenv(dotenv_path=os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-2sg8kr6drfs!_tzr+e+3rs(lbsc!#%bu&wt)2@@&2m--cmi)on"
+# SECRET_KEY = 'django-insecure-2sg8kr6drfs!_tzr+e+3rs(lbsc!#%bu&wt)2@@&2m--cmi)on'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -193,3 +193,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
