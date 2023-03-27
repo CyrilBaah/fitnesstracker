@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "django_rest_passwordreset",
     "accounts",
-    "exercise",
+    "exercises"
 ]
 
 AUTH_USER_MODEL = "accounts.CustomUser"
