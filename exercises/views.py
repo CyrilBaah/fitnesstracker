@@ -9,6 +9,7 @@ from accounts.models import CustomUser
 from .models import Exercises
 from .serializers import ExerciseSerializer
 
+
 class ExerciseCreateView(APIView):
     """Create a new Exercise"""
 
