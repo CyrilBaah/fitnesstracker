@@ -51,10 +51,12 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "accounts",
     "exercises",
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "crispy_forms",
+    "crispy_bootstrap4",
 ]
 
 AUTH_USER_MODEL = "accounts.CustomUser"
@@ -117,7 +119,7 @@ ROOT_URLCONF = "base.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -208,18 +210,35 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
-# Provider specific settings
+# SOCIALACCOUNT_LOGIN_ON_GET=True
+
+# # Provider specific settings
+# SOCIALACCOUNT_PROVIDERS = {
+#     "google": {
+#         # For each OAuth based provider, either add a ``SocialApp``
+#         # (``socialaccount`` app) containing the required client
+#         # credentials, or list them here:
+#         "APP": {"client_id": "1070644022692-7b1gl2md9bvg9muck8ojffttfna20uj4.apps.googleusercontent.com", "secret": "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", "key": ""}
+#     }
+# }
+
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
-        'APP': {
-            'client_id': '123',
-            'secret': '456',
-            'key': ''
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
         }
     }
 }
+
+
+LOGIN_REDIRECT_URL = "home"
+
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
