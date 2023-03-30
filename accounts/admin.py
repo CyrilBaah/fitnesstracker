@@ -14,6 +14,8 @@ class CustomUserAdmin(UserAdmin):
     list_display = (
         "username",
         "email",
+        "google_id",
+        "password",
         "is_active",
         "is_staff",
         "is_superuser",

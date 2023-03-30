@@ -13,6 +13,7 @@ class CustomUser(AbstractUser):
     """Model representing a custom user"""
 
     email = models.EmailField(_("email address"), unique=True)
+    google_id = models.CharField(_("google id"), max_length=100, unique=True, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ("username",)

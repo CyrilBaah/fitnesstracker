@@ -1,11 +1,13 @@
 from django.contrib.auth import authenticate, get_user_model
 from rest_framework import status
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import GenericAPIView, RetrieveUpdateAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from .models import CustomUser
 from .serializers import (
     ChangePasswordSerializer,
     CustomUserSerializer,
@@ -25,18 +27,52 @@ class RegisterationAPIView(GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        token = RefreshToken.for_user(user)
-        data = serializer.data
-        response = {
-            "status": "success",
-            "code": status.HTTP_201_CREATED,
-            "message": "Registration successful",
-            "data": data,
-        }
-        data["tokens"] = {"refresh": str(token), "access": str(token.access_token)}
-        return Response(response, status=status.HTTP_201_CREATED)
+
+        if serializer.is_valid():
+            # For Normal Registration
+            if (
+                "username" in serializer.validated_data
+                and "email" in serializer.validated_data
+                and "password" in serializer.validated_data
+            ):
+                user = serializer.save()
+                token = RefreshToken.for_user(user)
+                data = serializer.data
+                response = {
+                    "status": "success",
+                    "code": status.HTTP_201_CREATED,
+                    "message": "Registration successful",
+                    "data": data,
+                }
+                data["tokens"] = {
+                    "refresh": str(token),
+                    "access": str(token.access_token),
+                }
+                return Response(response, status=status.HTTP_201_CREATED)
+            # For Google Registration
+            elif (
+                "username" in serializer.validated_data
+                and "email" in serializer.validated_data
+                and "google_id" in serializer.validated_data
+            ):
+                user = serializer.save()
+                token = RefreshToken.for_user(user)
+                data = serializer.data
+                response = {
+                    "status": "success",
+                    "code": status.HTTP_201_CREATED,
+                    "message": "Registration successful",
+                    "data": data,
+                }
+                data["tokens"] = {
+                    "refresh": str(token),
+                    "access": str(token.access_token),
+                }
+                return Response(response, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LoginAPIView(GenericAPIView):
@@ -46,20 +82,37 @@ class LoginAPIView(GenericAPIView):
     serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data
-        serializer = CustomUserSerializer(user)
-        token = RefreshToken.for_user(user)
-        data = serializer.data
-        response = {
-            "status": "success",
-            "code": status.HTTP_200_OK,
-            "message": "Login successful",
-            "data": data,
-        }
-        data["tokens"] = {"refresh": str(token), "access": str(token.access_token)}
-        return Response(response, status=status.HTTP_200_OK)
+        if "google_id" in request.data:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            user = serializer.validated_data
+            serializer = CustomUserSerializer(user)
+            token = RefreshToken.for_user(user)
+            data = serializer.data
+            response = {
+                "status": "success",
+                "code": status.HTTP_200_OK,
+                "message": "Login successful",
+                "data": data,
+            }
+            data["tokens"] = {"refresh": str(token), "access": str(token.access_token)}
+            return Response(response, status=status.HTTP_200_OK)
+
+        else:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            user = serializer.validated_data
+            serializer = CustomUserSerializer(user)
+            token = RefreshToken.for_user(user)
+            data = serializer.data
+            response = {
+                "status": "success",
+                "code": status.HTTP_200_OK,
+                "message": "Login successful",
+                "data": data,
+            }
+            data["tokens"] = {"refresh": str(token), "access": str(token.access_token)}
+            return Response(response, status=status.HTTP_200_OK)
 
 
 class ChangePasswordView(UpdateAPIView):
