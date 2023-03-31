@@ -15,6 +15,8 @@ class ExerciseCreateView(APIView):
 
     permission_classes = (IsAuthenticated,)
     authentication_classes = (JWTAuthentication,)
+    
+    serializer_class = ExerciseSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = ExerciseSerializer(data=request.data)
