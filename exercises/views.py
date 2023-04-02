@@ -1,4 +1,5 @@
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -8,6 +9,12 @@ from accounts.models import CustomUser
 
 from .models import Exercises
 from .serializers import ExerciseSerializer
+
+
+class ExercisePagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = "page_size"
+    max_page_size = 100
 
 
 class ExerciseCreateView(APIView):
@@ -42,8 +49,9 @@ class ExerciseListView(APIView):
 
 
 class ExerciseDetailView(APIView):
-    permission_classes = (IsAuthenticated,)
-    authentication_classes = (JWTAuthentication,)
+    # permission_classes = (IsAuthenticated,)
+    # authentication_classes = (JWTAuthentication,)
+    pagination_class = ExercisePagination
 
     serializer_class = ExerciseSerializer
 
@@ -51,10 +59,12 @@ class ExerciseDetailView(APIView):
 
     def get(self, request, *args, **kwargs):
         user_id = request.data["user"]
-
         exercises = Exercises.objects.filter(user=user_id)
-        serializer = ExerciseSerializer(exercises, many=True)
-        data = serializer.data
+        page = self.pagination_class()
+        page_data = page.paginate_queryset(exercises, request)
+        serializer = self.serializer_class(page_data, many=True)
+        response = page.get_paginated_response(serializer.data)
+        data = response.data
         response = {
             "status": "success",
             "code": status.HTTP_200_OK,
