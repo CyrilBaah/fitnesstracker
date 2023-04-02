@@ -14,9 +14,13 @@ class Command(BaseCommand):
         for i in range(100):
             exercise = Exercises(
                 name=fake.word().capitalize(),
-                type=fake.random_element(elements=("cardio", "strength", "flexibility")),
+                type=fake.random_element(
+                    elements=("cardio", "strength", "flexibility")
+                ),
                 description=fake.sentence(),
-                user_id=fake.random_int(min=1, max=3),  # Assuming 10 users with IDs 1-10
+                user_id=fake.random_int(
+                    min=1, max=3
+                ),  # Assuming 10 users with IDs 1-10
             )
             exercise.save()
 
