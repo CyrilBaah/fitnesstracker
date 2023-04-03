@@ -47,8 +47,8 @@ class ExerciseListView(APIView):
 
 
 class ExerciseDetailView(APIView):
-    # permission_classes = (IsAuthenticated,)
-    # authentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (JWTAuthentication,)
     pagination_class = ExercisePagination
 
     serializer_class = ExerciseSerializer
