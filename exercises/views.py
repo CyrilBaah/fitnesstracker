@@ -5,8 +5,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from accounts.models import CustomUser
-
 from .models import Exercises
 from .serializers import ExerciseSerializer
 

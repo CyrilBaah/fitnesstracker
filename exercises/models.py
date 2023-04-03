@@ -11,7 +11,7 @@ class Exercises(models.Model):
     description = models.TextField()
     date = models.DateField(auto_now_add=True)
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="user"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="exercises"
     )
 
     class Meta:
