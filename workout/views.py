@@ -8,9 +8,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+from exercises.models import Exercises
 from workout.models import Workout
 from workout.serializers import WorkoutSerializer
-from exercises.models import Exercises
 
 
 class WorkoutPagination(PageNumberPagination):
@@ -31,6 +31,7 @@ class WorkoutCreateView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class WorkoutListView(APIView):
     """List all Workout | Administrators"""
@@ -59,7 +60,6 @@ class WorkoutDetailView(APIView):
         user_id = request.data["user"]
         workouts = Workout.objects.filter(user=user_id)
 
-        
         # Filter by date
         date = request.query_params.get("date", None)
         if date:

@@ -1,11 +1,12 @@
 from rest_framework import serializers
 
-from workout.models import Workout
 from exercises.serializers import ExerciseSerializer
+from workout.models import Workout
 
 
 class WorkoutSerializer(serializers.ModelSerializer):
     """Serializer for Workout."""
+
     exercises = ExerciseSerializer(many=True)
 
     class Meta:
