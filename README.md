@@ -42,6 +42,16 @@ Fitness Tracker
  ./run-linters.sh
 ```
 
+## Generate Seeder
+- Exercise
+```sh
+ ./manage seed_exercises
+```
+- Nutritions
+```sh
+ ./manage seed_nutritions
+```
+
 ## Generate documentation
 ```sh
  ./manage.py spectacular --color --file schema.yml

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "exercises",
     "drf_spectacular",
     "nutrition",
+    "workout",
 ]
 
 AUTH_USER_MODEL = "accounts.CustomUser"

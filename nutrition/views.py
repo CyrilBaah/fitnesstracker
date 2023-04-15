@@ -1,3 +1,6 @@
+import calendar
+import datetime
+
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
@@ -7,7 +10,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from nutrition.models import Nutrition
 from nutrition.serializers import NutritionSerializer
-import datetime, calendar
+
 
 class NutritionPagination(PageNumberPagination):
     page_size = 10
@@ -55,19 +58,21 @@ class NutritionDetailView(APIView):
     def get(self, request, *args, **kwargs):
         user_id = request.data["user"]
         nutritions = Nutrition.objects.filter(user=user_id)
-        
-        month = request.query_params.get('month', None)
+
+        month = request.query_params.get("month", None)
         if month:
-            month_start = datetime.datetime.strptime(month, '%m-%Y')
-            month_end = month_start.replace(day=calendar.monthrange(month_start.year, month_start.month)[1])
+            month_start = datetime.datetime.strptime(month, "%m-%Y")
+            month_end = month_start.replace(
+                day=calendar.monthrange(month_start.year, month_start.month)[1]
+            )
             nutritions = nutritions.filter(date__gte=month_start, date__lte=month_end)
 
         # Filter by date
-        date = request.query_params.get('date', None)
+        date = request.query_params.get("date", None)
         if date:
-            date = datetime.datetime.strptime(date, '%d-%m-%Y')
+            date = datetime.datetime.strptime(date, "%d-%m-%Y")
             nutritions = nutritions.filter(date=date)
-            
+
         page = self.pagination_class()
         page_data = page.paginate_queryset(nutritions, request)
         serializer = self.serializer_class(page_data, many=True)
