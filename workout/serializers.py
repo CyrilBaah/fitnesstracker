@@ -12,3 +12,10 @@ class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workout
         fields = "__all__"
+
+    def update(self, instance, validated_data):
+        exercises_data = validated_data.pop("exercises", None)
+        if exercises_data:
+            # update exercises here
+            pass
+        return super().update(instance, validated_data)

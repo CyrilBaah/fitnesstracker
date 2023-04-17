@@ -22,6 +22,9 @@ class WorkoutPagination(PageNumberPagination):
 class WorkoutCreateView(APIView):
     """Create a new Workout"""
 
+    permission_classes = (IsAuthenticated, IsAdminUser)
+    authentication_classes = (JWTAuthentication,)
+
     serializer_class = WorkoutSerializer
 
     def post(self, request, *args, **kwargs):
@@ -36,8 +39,8 @@ class WorkoutCreateView(APIView):
 class WorkoutListView(APIView):
     """List all Workout | Administrators"""
 
-    # permission_classes = (IsAuthenticated, IsAdminUser)
-    # authentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated, IsAdminUser)
+    authentication_classes = (JWTAuthentication,)
 
     serializer_class = WorkoutSerializer
 
@@ -48,8 +51,8 @@ class WorkoutListView(APIView):
 
 
 class WorkoutDetailView(APIView):
-    # permission_classes = (IsAuthenticated,)
-    # authentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (JWTAuthentication,)
     pagination_class = WorkoutPagination
 
     serializer_class = WorkoutSerializer
@@ -57,7 +60,9 @@ class WorkoutDetailView(APIView):
     """Get workout"""
 
     def get(self, request, *args, **kwargs):
-        user_id = request.data["user"]
+        # user_id = request.data["user"]
+        user_id = request.user.id
+
         workouts = Workout.objects.filter(user=user_id)
 
         # Filter by date
