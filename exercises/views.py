@@ -107,6 +107,8 @@ class ExerciseUpdateView(APIView):
 class ExerciseDeleteView(APIView):
     """Delete an Exercise"""
 
+    serializer_class = ExerciseSerializer
+
     def delete(self, request, pk, *args, **kwargs):
         user_id = request.user.id
 

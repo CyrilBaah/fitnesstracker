@@ -117,6 +117,8 @@ class WorkoutUpdateView(APIView):
 class WorkoutDeleteView(APIView):
     """Delete an workout"""
 
+    serializer_class = WorkoutSerializer
+
     def delete(self, request, pk, *args, **kwargs):
         # user_id = request.data.get("user")
         user_id = request.user.id

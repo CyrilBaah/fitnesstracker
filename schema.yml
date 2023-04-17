@@ -245,6 +245,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/TokenRefresh'
           description: ''
+  /exercises/:
+    get:
+      operationId: exercises_retrieve
+      description: List all Exercises | Administrators
+      tags:
+      - exercises
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exercise'
+          description: ''
   /exercises/create-exercise/:
     post:
       operationId: exercises_create_exercise_create
@@ -271,6 +286,283 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Exercise'
+          description: ''
+  /exercises/delete-exercise/{id}/:
+    delete:
+      operationId: exercises_delete_exercise_destroy
+      description: Delete an Exercise
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - exercises
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /exercises/my-exercises/:
+    get:
+      operationId: exercises_my_exercises_retrieve
+      tags:
+      - exercises
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exercise'
+          description: ''
+  /exercises/update-exercise/{id}/:
+    put:
+      operationId: exercises_update_exercise_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - exercises
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Exercise'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Exercise'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Exercise'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exercise'
+          description: ''
+  /nutrition/:
+    get:
+      operationId: nutrition_retrieve
+      description: List all Nutrition | Administrators
+      tags:
+      - nutrition
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nutrition'
+          description: ''
+  /nutrition/create-nutrition/:
+    post:
+      operationId: nutrition_create_nutrition_create
+      description: Create a new Nutrition
+      tags:
+      - nutrition
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Nutrition'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Nutrition'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Nutrition'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nutrition'
+          description: ''
+  /nutrition/delete-nutrition/{id}/:
+    delete:
+      operationId: nutrition_delete_nutrition_destroy
+      description: Delete an nutrition
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - nutrition
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /nutrition/my-nutrition/:
+    get:
+      operationId: nutrition_my_nutrition_retrieve
+      tags:
+      - nutrition
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nutrition'
+          description: ''
+  /nutrition/update-nutrition/{id}/:
+    put:
+      operationId: nutrition_update_nutrition_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - nutrition
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Nutrition'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Nutrition'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Nutrition'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nutrition'
+          description: ''
+  /workout/:
+    get:
+      operationId: workout_retrieve
+      description: List all Workout | Administrators
+      tags:
+      - workout
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workout'
+          description: ''
+  /workout/create-workout/:
+    post:
+      operationId: workout_create_workout_create
+      description: Create a new Workout
+      tags:
+      - workout
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workout'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Workout'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Workout'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workout'
+          description: ''
+  /workout/delete-workout/{id}/:
+    delete:
+      operationId: workout_delete_workout_destroy
+      description: Delete an workout
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workout
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /workout/my-workout/:
+    get:
+      operationId: workout_my_workout_retrieve
+      tags:
+      - workout
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workout'
+          description: ''
+  /workout/update-workout/{id}/:
+    put:
+      operationId: workout_update_workout_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - workout
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workout'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Workout'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Workout'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workout'
           description: ''
 components:
   schemas:
@@ -321,6 +613,18 @@ components:
       - name
       - type
       - user
+    FoodTypeEnum:
+      enum:
+      - breakfast
+      - lunch
+      - dinner
+      - snack
+      type: string
+      description: |-
+        * `breakfast` - Breakfast
+        * `lunch` - Lunch
+        * `dinner` - Dinner
+        * `snack` - Snack
     Login:
       type: object
       description: Login Serializer
@@ -342,6 +646,35 @@ components:
           type: string
       required:
       - refresh
+    Nutrition:
+      type: object
+      description: Serializer for Nutritions.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        food_type:
+          $ref: '#/components/schemas/FoodTypeEnum'
+        calorie_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        date:
+          type: string
+          format: date
+          readOnly: true
+        user:
+          type: integer
+      required:
+      - calorie_count
+      - date
+      - food_type
+      - id
+      - name
+      - user
     PasswordToken:
       type: object
       properties:
@@ -409,6 +742,34 @@ components:
       required:
       - access
       - refresh
+    Workout:
+      type: object
+      description: Serializer for Workout.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        exercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/Exercise'
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          format: time
+        duration:
+          type: string
+        user:
+          type: integer
+      required:
+      - date
+      - duration
+      - exercises
+      - id
+      - time
+      - user
   securitySchemes:
     jwtAuth:
       type: http

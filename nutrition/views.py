@@ -121,6 +121,8 @@ class NutritionUpdateView(APIView):
 class NutritionDeleteView(APIView):
     """Delete an nutrition"""
 
+    serializer_class = NutritionSerializer
+
     def delete(self, request, pk, *args, **kwargs):
         user_id = request.user.id
 
