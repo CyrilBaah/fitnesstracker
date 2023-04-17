@@ -60,7 +60,6 @@ class WorkoutDetailView(APIView):
     """Get workout"""
 
     def get(self, request, *args, **kwargs):
-        # user_id = request.data["user"]
         user_id = request.user.id
 
         workouts = Workout.objects.filter(user=user_id)
@@ -119,7 +118,9 @@ class WorkoutDeleteView(APIView):
     """Delete an workout"""
 
     def delete(self, request, pk, *args, **kwargs):
-        user_id = request.data.get("user")
+        # user_id = request.data.get("user")
+        user_id = request.user.id
+
         workout = Workout.objects.filter(user=user_id, id=pk).first()
         if not workout:
             return Response(

@@ -11,4 +11,9 @@ urlpatterns = [
         views.WorkoutUpdateView.as_view(),
         name="update-workout",
     ),
+    path(
+        "delete-workout/<int:pk>/",
+        views.WorkoutDeleteView.as_view(),
+        name="delete-workout",
+    ),
 ]

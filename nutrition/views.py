@@ -47,8 +47,8 @@ class NutritionListView(APIView):
 
 
 class NutritionDetailView(APIView):
-    # permission_classes = (IsAuthenticated,)
-    # authentication_classes = (JWTAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (JWTAuthentication,)
     pagination_class = NutritionPagination
 
     serializer_class = NutritionSerializer
@@ -56,7 +56,7 @@ class NutritionDetailView(APIView):
     """Get nutritions"""
 
     def get(self, request, *args, **kwargs):
-        user_id = request.data["user"]
+        user_id = request.user.id
         nutritions = Nutrition.objects.filter(user=user_id)
 
         month = request.query_params.get("month", None)
@@ -96,7 +96,8 @@ class NutritionUpdateView(APIView):
     """Update an nutrition"""
 
     def put(self, request, pk):
-        user_id = request.data.get("user")
+        user_id = request.user.id
+
         nutrition = Nutrition.objects.filter(user=user_id, id=pk).first()
         if not nutrition:
             return Response(
@@ -121,7 +122,8 @@ class NutritionDeleteView(APIView):
     """Delete an nutrition"""
 
     def delete(self, request, pk, *args, **kwargs):
-        user_id = request.data.get("user")
+        user_id = request.user.id
+
         nutrition = Nutrition.objects.filter(user=user_id, id=pk).first()
         if not nutrition:
             return Response(

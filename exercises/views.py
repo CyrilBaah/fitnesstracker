@@ -56,7 +56,8 @@ class ExerciseDetailView(APIView):
     """Get Exercises"""
 
     def get(self, request, *args, **kwargs):
-        user_id = request.data["user"]
+        user_id = request.user.id
+
         exercises = Exercises.objects.filter(user=user_id)
         page = self.pagination_class()
         page_data = page.paginate_queryset(exercises, request)
@@ -81,7 +82,8 @@ class ExerciseUpdateView(APIView):
     """Update an Exercise"""
 
     def put(self, request, pk):
-        user_id = request.data.get("user")
+        user_id = request.user.id
+
         exercise = Exercises.objects.filter(user=user_id, id=pk).first()
         if not exercise:
             return Response(
@@ -106,7 +108,8 @@ class ExerciseDeleteView(APIView):
     """Delete an Exercise"""
 
     def delete(self, request, pk, *args, **kwargs):
-        user_id = request.data.get("user")
+        user_id = request.user.id
+
         exercise = Exercises.objects.filter(user=user_id, id=pk).first()
         if not exercise:
             return Response(
