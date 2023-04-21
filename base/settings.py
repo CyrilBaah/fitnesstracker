@@ -167,9 +167,6 @@ else:
             #         },
         }
     }
-    
-if not DATABASES['default']['NAME']:
-    DATABASES['default']['NAME'] = 'my_default_database_name'
 
 
 # Password validation
