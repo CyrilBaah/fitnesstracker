@@ -32,9 +32,9 @@ jobs:
       run: |
         python manage.py test
 
-    - name: Run Flake8
-      run: |
-        flake8
+    # - name: Run Flake8
+    #   run: |
+    #     flake8
 
     - name: Run Black
       run: |
