@@ -15,6 +15,25 @@ class ExercisePagination(PageNumberPagination):
     max_page_size = 100
 
 
+# class ExerciseCreateView(APIView):
+#     """Create a new Exercise"""
+
+#     permission_classes = (IsAuthenticated,)
+#     authentication_classes = (JWTAuthentication,)
+
+#     serializer_class = ExerciseSerializer
+
+#     def post(self, request, *args, **kwargs):
+#         user_id = request.user.id
+
+#         serializer = ExerciseSerializer(data=request.data)
+#         if serializer.is_valid():
+#             # serializer.save()
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class ExerciseCreateView(APIView):
     """Create a new Exercise"""
 
@@ -24,7 +43,15 @@ class ExerciseCreateView(APIView):
     serializer_class = ExerciseSerializer
 
     def post(self, request, *args, **kwargs):
-        serializer = ExerciseSerializer(data=request.data)
+        data = {
+            "name": request.data["name"],
+            "type": request.data["type"],
+            "description": request.data["description"],
+            "user": request.user.id,
+        }
+
+        serializer = ExerciseSerializer(data=data)
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
