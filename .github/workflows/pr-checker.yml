@@ -2,7 +2,7 @@ name: Pull Request Checker
 
 on:
   push:
-    branches: [ main, staging ]
+    branches: [ main, staging, test ]
   pull_request:
     branches: [ dev, staging, main ]
 
@@ -13,6 +13,17 @@ jobs:
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       TEST_DATABASE_PREFIX: test_
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github_actions
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
     - name: Checkout code
