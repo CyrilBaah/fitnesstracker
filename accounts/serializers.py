@@ -83,25 +83,6 @@ class LoginSerializer(serializers.Serializer):
                 pass
         raise serializers.ValidationError("Incorrect Credentials")
 
-    # def validate(self, data):
-    #     # Check if a password was provided
-    #     if 'password' in data:
-    #         user = authenticate(**data)
-    #         if user and user.is_active:
-    #             return user
-    #     else:
-    #         # If no password was provided, try to authenticate using Google ID
-    #         try:
-    #             if 'google_id' in data:
-    #             user = authenticate(**data)
-
-    #             # user = CustomUser.objects.get(email=data['email'], google_id__isnull=False)
-    #             if user and user.is_active:
-    #                 return user
-    #         except CustomUser.DoesNotExist:
-    #             pass
-    #     raise serializers.ValidationError("Incorrect Credentials")
-
 
 class ChangePasswordSerializer(serializers.Serializer):
     """Change password Serializer"""
