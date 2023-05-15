@@ -56,3 +56,6 @@ Fitness Tracker
 ```sh
  ./manage.py spectacular --color --file schema.yml
 ```
+
+## Documentation API
+http://127.0.0.1:8000/api/schema/docs
