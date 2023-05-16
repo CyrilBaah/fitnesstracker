@@ -71,5 +71,18 @@ http://127.0.0.1:8000/api/schema/docs
  - **Kind** is installed. *Checkout installation here* [Kind](https://kind.sigs.k8s.io/ "Kind")
 
 ```sh
- kubectl apply -f ops/
+$ kubectl apply -f ops/
 ```
+
+## Serve the application
+```sh
+$ kubectl port-forward service/fitnesstracker 8000:8000
+```
+
+
+kubectl get service fitnesstracker -o jsonpath='{.spec.clusterIP}'
+10.96.82.104
+
+
+kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'
+192.168.49.2
