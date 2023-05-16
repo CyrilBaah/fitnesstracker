@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: fitnesstracker
+spec:
+  type: LoadBalancer
+  selector:
+    app: fitnesstracker
+  ports:
+    - port: 8000
+      targetPort: 8000

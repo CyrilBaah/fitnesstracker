@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fitnesstracker
+data:
+  DB_TYPE: postgres
+  USE_S3: "False"
+  DB_NAME: fitness
+  DB_USER: postgres
+  DB_PORT: "5432"

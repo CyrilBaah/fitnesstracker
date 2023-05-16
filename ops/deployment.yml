@@ -13,7 +13,7 @@ spec:
         app: fitnesstracker
     spec:
       containers:
-        - name: k8s-web
+        - name: fitnesstracker
           image: cyrilbaah/fitnesstracker
           resources:
             limits:

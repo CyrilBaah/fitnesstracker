@@ -59,3 +59,8 @@ Fitness Tracker
 
 ## Documentation API
 http://127.0.0.1:8000/api/schema/docs
+
+# Generate Secret Key
+```sh
+ ./scripts/run-secretkey.sh 
+```
