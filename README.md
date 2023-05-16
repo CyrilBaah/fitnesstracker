@@ -19,10 +19,10 @@ Fitness Tracker
 
 1. Clone the project.
 ```sh
- git clone 
+ git clone https://github.com/CyrilBaah/fitnesstracker.git
 ```
 ```sh
- cd
+ cd fitnesstracker
 ```
 2. Change the env.example file to .env .
 3. Run 
@@ -86,4 +86,18 @@ $ kubectl get service fitnesstracker -o jsonpath='{.spec.clusterIP}'
 
 ```sh
 $ kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'
+```
+
+## Configure Ingress
+Get ClusterIP
+```sh
+$ kubectl get service fitnesstracker
+```
+Modify /etc/hosts
+```sh
+$ sudo nano /etc/hosts
+```
+Add cluster IP to /etc/hosts
+```bash
+123.456.7.8 fitnesstracker.com
 ```
