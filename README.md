@@ -51,7 +51,10 @@ Fitness Tracker
 ```sh
  ./manage seed_nutritions
 ```
-
+- Workout
+```sh
+ ./manage seed_workouts
+```
 ## Generate documentation
 ```sh
  ./manage.py spectacular --color --file schema.yml
