@@ -78,11 +78,12 @@ $ kubectl apply -f ops/
 ```sh
 $ kubectl port-forward service/fitnesstracker 8000:8000
 ```
+## Get Node Address
 
+```sh
+$ kubectl get service fitnesstracker -o jsonpath='{.spec.clusterIP}'
+```
 
-kubectl get service fitnesstracker -o jsonpath='{.spec.clusterIP}'
-10.96.82.104
-
-
-kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'
-192.168.49.2
+```sh
+$ kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'
+```
