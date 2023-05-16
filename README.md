@@ -78,6 +78,11 @@ $ kubectl apply -f ops/
 ```sh
 $ kubectl port-forward service/fitnesstracker 8000:8000
 ```
+
+## Serve minikube server | Dashboard
+```sh
+$ minikube dashboard --url
+```
 ## Get Node Address
 
 ```sh
