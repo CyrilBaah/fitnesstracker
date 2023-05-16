@@ -19,10 +19,10 @@ Fitness Tracker
 
 1. Clone the project.
 ```sh
- git clone 
+ git clone https://github.com/CyrilBaah/fitnesstracker.git
 ```
 ```sh
- cd
+ cd fitnesstracker
 ```
 2. Change the env.example file to .env .
 3. Run 
@@ -51,7 +51,10 @@ Fitness Tracker
 ```sh
  ./manage seed_nutritions
 ```
-
+- Workout
+```sh
+ ./manage seed_workouts
+```
 ## Generate documentation
 ```sh
  ./manage.py spectacular --color --file schema.yml
@@ -78,6 +81,11 @@ $ kubectl apply -f ops/
 ```sh
 $ kubectl port-forward service/fitnesstracker 8000:8000
 ```
+
+## Serve minikube server | Dashboard
+```sh
+$ minikube dashboard --url
+```
 ## Get Node Address
 
 ```sh
@@ -86,4 +94,18 @@ $ kubectl get service fitnesstracker -o jsonpath='{.spec.clusterIP}'
 
 ```sh
 $ kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'
+```
+
+## Configure Ingress
+Get ClusterIP
+```sh
+$ kubectl get service fitnesstracker
+```
+Modify /etc/hosts
+```sh
+$ sudo nano /etc/hosts
+```
+Add cluster IP to /etc/hosts
+```bash
+123.456.7.8 fitnesstracker.com
 ```
