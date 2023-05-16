@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fitnesstracker
+data:
+  DEBUG: "True"
+  DB_TYPE: "postgres"
+  USE_S3_BUCKET: "False"
+  DB_HOST: "xxx-test.xxxdwzfc1xxx.xxx-west-123.rds.amazonaws.com"
+  DB_PASSWORD: "passwordhere"
+  DB_USER: "postgres"
+  DB_NAME: "database_name"
+
+
+
