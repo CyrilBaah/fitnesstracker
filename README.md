@@ -60,7 +60,16 @@ Fitness Tracker
 ## Documentation API
 http://127.0.0.1:8000/api/schema/docs
 
-# Generate Secret Key
+## Generate Secret Key
 ```sh
  ./scripts/run-secretkey.sh 
+```
+
+## Run kubernetes Manifest files
+### Make sure on of the following is installed
+ - **Minikube** is installed. *Checkout installation here* [Minikube](https://minikube.sigs.k8s.io/docs/ "Minikube")
+ - **Kind** is installed. *Checkout installation here* [Kind](https://kind.sigs.k8s.io/ "Kind")
+
+```sh
+ kubectl apply -f ops/
 ```
