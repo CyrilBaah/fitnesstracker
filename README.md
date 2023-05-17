@@ -15,7 +15,7 @@ Fitness Tracker
 ## How to set up locally using Docker container - **Recommended**
 ### Prerequisite
 - Make sure **Docker** is installed locally. *Checkout installation here* [Docker](https://www.docker.com/ "Docker")
-- Make sure **Mysql** is installed locally. *Checkout installation here* [Mysql](https://www.mysql.com/ "Mysql")
+- Make sure **Postgres** is installed locally. *Checkout installation here* [Postgres](https://www.postgresql.org/ "Postgres")
 
 1. Clone the project.
 ```sh
