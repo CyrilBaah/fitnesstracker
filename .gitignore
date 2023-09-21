@@ -162,3 +162,4 @@ cython_debug/
 file.txt
 configmap.yml
 secrets.yml
+deploy.yml
