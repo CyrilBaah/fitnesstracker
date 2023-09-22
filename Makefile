@@ -46,9 +46,9 @@ get-pods:
 	@echo "Get cluster pods..."
 	kubectl get pods -owide
 
-expose-frontend:
-	@echo "Get port for frontend..."
-	kubectl port-forward svc/fmtok8s-frontend -n default 8080:80
+expose-backend:
+	@echo "Get port for backend..."
+	kubectl port-forward svc/$(CONTAINER_NAME) -n default 8000:8000
 
 build:
 	docker build -t $(IMAGE_NAME) .
@@ -90,7 +90,7 @@ help:
 	@echo "  delete-cluster   - Delete the Kind cluster"
 	@echo "  get-pods         - List all pods"
 	@echo "  get-nodes        - List all nodes"
-	@echo "  expose-frontend  - Makes frontend app accessible"
+	@echo "  expose-backend   - Makes backend app accessible"
 	@echo "  get-nginxingress - List all nginx ingress"
 	@echo "  get-logs         - Get logs command"
 	@echo "  build            - Build Docker image"
