@@ -160,6 +160,6 @@ cython_debug/
 #.idea/
 
 file.txt
-configmap.yml
-secrets.yml
+configmapexample.yml
+secretsexample.yml
 deploy.yml
