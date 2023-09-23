@@ -4,12 +4,14 @@ metadata:
   name: fitnesstracker
 data:
   DEBUG: "True"
-  DB_TYPE: "postgres"
+  DB_TYPE: "local"
   USE_S3_BUCKET: "False"
   DB_HOST: "xxx-test.xxxdwzfc1xxx.xxx-west-123.rds.amazonaws.com"
   DB_PASSWORD: "passwordhere"
-  DB_USER: "postgres"
-  DB_NAME: "database_name"
+  DB_USER: "usernamehere"
+  DB_NAME: "databasenamehere"
+  DB_PORT: "5432"
+
 
 
 

@@ -109,3 +109,13 @@ Add cluster IP to /etc/hosts
 ```bash
 123.456.7.8 fitnesstracker.com
 ```
+
+## Use [KinD](https://kind.sigs.k8s.io/ "KinD")
+1. Run
+```
+make create-cluster
+```
+2. Install Nginx Ingress Controller
+```
+make install-nginxingresscontroller 
+```
