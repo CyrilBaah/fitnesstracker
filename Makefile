@@ -22,6 +22,9 @@ delete-cluster:
 	@echo "Deleting Kind cluster..."
 	kind delete cluster --name $(CLUSTER_NAME)
 
+push-image:
+	docker push cyrilbaah/fitnesstracker:latest
+
 install-nginxingresscontroller:
 	@echo "Install NGINX Ingress Controller..."
 	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/kind/deploy.yaml
@@ -51,7 +54,7 @@ expose-backend:
 	kubectl port-forward svc/$(CONTAINER_NAME) -n default 8000:8000
 
 build:
-	docker build -t $(IMAGE_NAME) .
+	docker build -t cyrilbaah/$(IMAGE_NAME) .
 
 run:
 	docker run -d -p $(PORT):$(PORT) --name $(CONTAINER_NAME) $(IMAGE_NAME)
