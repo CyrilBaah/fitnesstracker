@@ -45,15 +45,15 @@ Fitness Tracker
 ## Generate Seeder
 - Exercise
 ```sh
- ./manage seed_exercises
+ ./manage.py seed_exercises
 ```
 - Nutritions
 ```sh
- ./manage seed_nutritions
+ ./manage.py seed_nutritions
 ```
 - Workout
 ```sh
- ./manage seed_workouts
+ ./manage.py seed_workouts
 ```
 ## Generate documentation
 ```sh
