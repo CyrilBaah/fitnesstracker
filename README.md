@@ -1,5 +1,5 @@
 # Fitness Tracker API
-Fitness Tracker 
+The Fitness Tracker API project is designed to track exercises, nutrition, and workouts, utilizing a Python backend with Django and Postgres for the database.
 
 ## Technology Stack
 - [Python](https://www.python.org/ "python")

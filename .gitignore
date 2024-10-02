@@ -163,3 +163,4 @@ file.txt
 configmapexample.yml
 secretsexample.yml
 deploy.yml
+.DS_Store
