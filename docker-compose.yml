@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: fitnesstracker
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - .:/app:rw
+      - static_volume:/home/app/static
+    ports:
+      - 8000:8000
+    networks:
+      - app-network
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+
+  db:
+    container_name: fitnesstacker-db
+    restart: unless-stopped
+    image: postgres:latest
+    ports:
+      - "6432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    networks:
+      - app-network
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_HOST=${DB_HOST}
+
+# Docker Networks
+networks:
+  app-network:
+    driver: bridge
+    
+# Volumes
+volumes:
+  static_volume:
+  pgdata:

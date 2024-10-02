@@ -1,13 +1,10 @@
-from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth import get_user_model
 from rest_framework import status
-from rest_framework.exceptions import AuthenticationFailed
-from rest_framework.generics import GenericAPIView, RetrieveUpdateAPIView, UpdateAPIView
+from rest_framework.generics import GenericAPIView, UpdateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import CustomUser
 from .serializers import (
     ChangePasswordSerializer,
     CustomUserSerializer,
@@ -178,5 +175,5 @@ class UserLogoutAPIView(GenericAPIView):
                 "data": [],
             }
             return Response(response, status=status.HTTP_205_RESET_CONTENT)
-        except Exception as e:
+        except Exception:
             return Response(status=status.HTTP_400_BAD_REQUEST)

@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fitnesstracker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fitnesstracker
+  template:
+    metadata:
+      labels:
+        app: fitnesstracker
+    spec:
+      containers:
+        - name: fitnesstracker
+          image: cyrilbaah/fitnesstracker
+          resources: 
+            limits:
+              memory: "1.0Gi"
+              cpu: "1"
+            requests:
+              memory: "600Mi"
+              cpu: "750m"
+          ports:
+            - containerPort: 8000
+          env:
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fitnesstracker
+                  key: SECRET_KEY
+            - name: DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: fitnesstracker
+                  key: DEBUG
+            - name: DB_TYPE
+              valueFrom:
+                configMapKeyRef:
+                  name: fitnesstracker
+                  key: DB_TYPE
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: fitnesstracker
+                  key: DB_HOST
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: fitnesstracker
+                  key: DB_PASSWORD
+            - name: USE_S3_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: fitnesstracker
+                  key: USE_S3_BUCKET
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: fitnesstracker
+                  key: DB_NAME
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: fitnesstracker
+                  key: DB_USER
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: fitnesstracker
+                  key: DB_PORT
+
+
+            
