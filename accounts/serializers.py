@@ -20,7 +20,8 @@ class RegisterationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ("id", "username", "email", "password", "google_id")
+        # fields = ("id", "username", "email", "password", "google_id") # Temporary remove Google ID Docs
+        fields = ("id", "username", "email", "password")
         extra_kwargs = {"password": {"write_only": True, "required": False}}
 
     # def create(self, validated_data):
@@ -63,7 +64,7 @@ class LoginSerializer(serializers.Serializer):
 
     email = serializers.CharField()
     password = serializers.CharField(write_only=True, required=False)
-    google_id = serializers.CharField(required=False)
+    # google_id = serializers.CharField(required=False) # Temporary remove Google ID Docs
 
     def validate(self, data):
         # Check if a password was provided
