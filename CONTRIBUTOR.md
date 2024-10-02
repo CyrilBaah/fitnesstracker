@@ -52,7 +52,8 @@ git push origin feature-branch-name
 Navigate to the original repository, and click the "Pull Request" button. Provide a clear title and description for your pull request.
 
 ## Code of Conduct
-By participating, you agree to abide by its terms.
+
+Please note that this project is governed by a [Code of Conduct](https://docs.github.com/en/site-policy/github-terms/github-community-guidelines). By participating, you agree to abide by its terms.
 
 ## Need Help?
 If you have questions about contributing, feel free to open an issue or reach out to the maintainers.
