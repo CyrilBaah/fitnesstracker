@@ -11,8 +11,38 @@ The Fitness Tracker API project is designed to track exercises, nutrition, and w
 - [Black](https://black.readthedocs.io/en/stable/ "Black") 
 - [Isort](https://pycqa.github.io/isort/ "Isort")
 
+## How to set up locally 
+### Prerequisite
+- Make sure **Postgres** is installed locally. *Checkout installation here* [Postgres](https://www.postgresql.org/ "Postgres")
 
-## How to set up locally using Docker container - **Recommended**
+1. Clone the project.
+```sh
+ git clone https://github.com/CyrilBaah/fitnesstracker.git
+```
+```sh
+ cd fitnesstracker
+```
+2. Create a virtual environment and activate it
+```sh
+ virtualenv env
+ source env/bin/activate  
+```
+3. Install packages
+```sh
+ pip install -r requirements.txt 
+```
+4. Change the env.example file to .env and update it accordingly
+5. Run migrations
+```sh
+python manage.py migrate
+```
+5. Start server
+```sh
+python manage.py runserver
+```
+5. Access the [fitnesstracker API](http://127.0.0.1:8000/api/schema/docs "Fitnesstracker API")
+
+## How to set up locally using Docker container 
 ### Prerequisite
 - Make sure **Docker** is installed locally. *Checkout installation here* [Docker](https://www.docker.com/ "Docker")
 - Make sure **Postgres** is installed locally. *Checkout installation here* [Postgres](https://www.postgresql.org/ "Postgres")
@@ -24,14 +54,14 @@ The Fitness Tracker API project is designed to track exercises, nutrition, and w
 ```sh
  cd fitnesstracker
 ```
-2. Change the env.example file to .env .
+2. Change the env.example file to .env 
 3. Run 
 ```sh
  docker-compose build --no-cache
 ```
 4. Run 
 ```sh
- docker-compose build up
+ docker-compose up
 ```
 
 ## Running Linters
