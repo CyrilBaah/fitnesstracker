@@ -1,78 +1,94 @@
-# Fitness Tracker API
-The Fitness Tracker API project is designed to track exercises, nutrition, and workouts, utilizing a Python backend with Django and Postgres for the database.
+# 
+# 🏋️‍♂️ Fitness Tracker API 🏋️‍♀️
 
-## Technology Stack
-- [Python](https://www.python.org/ "python")
-- [Postgres](https://www.postgresql.org/ "Postgres")
-- [Django](https://www.django-rest-framework.org/ "Django")
+The Fitness Tracker API is designed to keep you on top of your fitness goals by tracking exercises, nutrition, and workouts! This robust API leverages Python with Django and Postgres for a smooth experience.
 
-## Formatter or Linters
-- [Flake8](https://flake8.pycqa.org/en/latest/index.html# "Flake8")
-- [Black](https://black.readthedocs.io/en/stable/ "Black") 
-- [Isort](https://pycqa.github.io/isort/ "Isort")
 
-## How to set up locally 
-### Prerequisite
-- Make sure **Postgres** is installed locally. *Checkout installation here* [Postgres](https://www.postgresql.org/ "Postgres")
+## 🌟 Technology Stack
+Backend : [Python](https://www.python.org/)🐍
 
-1. Clone the project.
-```sh
- git clone https://github.com/CyrilBaah/fitnesstracker.git
+Database: [Postgres](https://www.postgresql.org/) 🐘
+
+Framework:[Postgres](https://www.djangoproject.com/)🦄
+## 🛠️ Code Formatters & Linters
+Flake8: Enforcing code standards [Flake8](https://flake8.pycqa.org/en/latest/index.html#)⚙️
+
+Black: Code formatting [Black](https://black.readthedocs.io/en/stable/) 🖤
+
+Isort: Sorting imports [Isort](https://pycqa.github.io/isort/) 📑
+
+## 🚀 How to Set Up Locally
+
+Pre-requisite
+Ensure Postgres is installed. Check the installation guide here.
+Steps
+
+1.Clone the Project:
+
+```bash
+git clone https://github.com/CyrilBaah/fitnesstracker.git
 ```
-```sh
- cd fitnesstracker
+```bash
+cd fitnesstracker
 ```
-2. Create a virtual environment and activate it
-```sh
- virtualenv env
- source env/bin/activate  
+2.Set Up Virtual Environment:
+```bash
+virtualenv env
+source env/bin/activate
 ```
-3. Install packages
-```sh
- pip install -r requirements.txt 
+3.Install Dependencies:
+```bash
+pip install -r requirements.txt
 ```
-4. Change the env.example file to .env and update it accordingly
-5. Run migrations
-```sh
+4.Update Environment Variables:
+Rename the `env.example` file to `.env` and update it as needed.
+
+5.Run Migrations:
+```bash
 python manage.py migrate
 ```
-5. Start server
-```sh
+6.Start the Server:
+```bash
 python manage.py runserver
 ```
-5. Access the [fitnesstracker API](http://127.0.0.1:8000/api/schema/docs "Fitnesstracker API")
+7.Access the API: Visit:  [Fitness Tracker API 🌐](http://127.0.0.1:8000/api/schema/docs) 
 
-## How to set up locally using Docker container 
-### Prerequisite
-- Make sure **Docker** is installed locally. *Checkout installation here* [Docker](https://www.docker.com/ "Docker")
-- Make sure **Postgres** is installed locally. *Checkout installation here* [Postgres](https://www.postgresql.org/ "Postgres")
 
-1. Clone the project.
-```sh
- git clone https://github.com/CyrilBaah/fitnesstracker.git
-```
-```sh
- cd fitnesstracker
-```
-2. Change the env.example file to .env 
-3. Run 
-```sh
- docker-compose build --no-cache
-```
-4. Run 
-```sh
- docker-compose up
-```
+## 🐳 Docker Setup
+Pre-requisite
 
-## Running Linters
+Install Docker: [Installation Guide](https://www.docker.com/)
+
+Install Postgres: [Installation Guide](https://www.postgresql.org/)
+
+Steps:
+
+1.Clone the repository
+``` bash
+git clone https://github.com/CyrilBaah/fitnesstracker.git
+cd fitnesstracker
+```
+2.Update Environment Variables:
+Rename the `env.example` file to `.env` and update it as needed.
+
+3.Run 
+```sh
+docker-compose build --no-cache
+```
+4.Run 
+```sh
+docker-compose up
+```
+## 🛡️ Running Linters
+
 ```sh
  cd scripts
 ```
 ```sh
  ./run-linters.sh
 ```
+## 📊 Generate Seeders
 
-## Generate Seeder
 - Exercise
 ```sh
  ./manage seed_exercises
@@ -85,48 +101,47 @@ python manage.py runserver
 ```sh
  ./manage seed_workouts
 ```
-## Generate documentation
+## 📜 Generate API Documentation
 ```sh
  ./manage.py spectacular --color --file schema.yml
 ```
 
 ## Documentation API
 http://127.0.0.1:8000/api/schema/docs
-
-## Generate Secret Key
+## 🔐 Generate Secret Key
 ```sh
  ./scripts/run-secretkey.sh 
 ```
+## 🏗️ Kubernetes Setup
 
-## Run kubernetes Manifest files
-### Make sure on of the following is installed
- - **Minikube** is installed. *Checkout installation here* [Minikube](https://minikube.sigs.k8s.io/docs/ "Minikube")
- - **Kind** is installed. *Checkout installation here* [Kind](https://kind.sigs.k8s.io/ "Kind")
+Prerequisites
 
+- Install **Minikube**.  [Minikube](https://minikube.sigs.k8s.io/docs/ "Minikube")
+ - Install **Kind**.  [Kind](https://kind.sigs.k8s.io/ "Kind")
+
+Steps:
+
+1.Apply Kubernetes manifests:
 ```sh
 $ kubectl apply -f ops/
 ```
-
-## Serve the application
+2.Port-forward the service:
 ```sh
 $ kubectl port-forward service/fitnesstracker 8000:8000
 ```
-
-## Serve minikube server | Dashboard
+3.Access Minikube dashboard:
 ```sh
 $ minikube dashboard --url
 ```
-## Get Node Address
-
+4.Get Node Address:
 ```sh
 $ kubectl get service fitnesstracker -o jsonpath='{.spec.clusterIP}'
 ```
-
 ```sh
 $ kubectl get nodes -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'
 ```
+5.Configure Ingress:
 
-## Configure Ingress
 Get ClusterIP
 ```sh
 $ kubectl get service fitnesstracker
@@ -140,7 +155,10 @@ Add cluster IP to /etc/hosts
 123.456.7.8 fitnesstracker.com
 ```
 
-## Use [KinD](https://kind.sigs.k8s.io/ "KinD")
+
+
+##🚀 Use [KinD](https://kind.sigs.k8s.io/ "KinD")
+
 1. Run
 ```
 make create-cluster
@@ -149,3 +167,36 @@ make create-cluster
 ```
 make install-nginxingresscontroller 
 ```
+## 🤝 Contributing
+
+We 💙 contributions! Here's how you can contribute to the project:
+
+1.Steps to Contribute
+Fork the Repository: Click on the "Fork" button on the repository page to create your own copy.
+
+2.Clone Your Fork
+
+Once you’ve forked the project, clone your copy to your local machine:
+```bash
+git clone https://github.com/YOUR-USERNAME/fitnesstracker.git
+cd fitnesstracker
+```
+3.Create a New Branch:
+```bash
+git checkout -b feature-branch-name
+```
+4.Make Your Changes: Add features, fix bugs, or enhance documentation.
+
+5.Commit Your Changes:
+
+Write clear and descriptive commit messages. Your commit messages should be short and concise, summarizing the changes.
+```bash
+git commit -m "Add feature or fix description"
+```
+6.Push to Your Fork:
+```bash
+git push origin feature-branch-name
+```
+7.Submit a Pull Request: Open a pull request from your fork to the original repository with a clear description.
+
+We look forward to your awesome contributions! 🎉
